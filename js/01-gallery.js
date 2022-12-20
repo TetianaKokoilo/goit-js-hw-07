@@ -31,10 +31,17 @@ function onClick(event) {
     return;
   }
   console.log(event.target);
-  const instance = basicLightbox.create(`
-	  <img src="${item.original}" width="800" height="600">
-`);
-  instance.show();
+//   const instance = basicLightbox.create(`
+// 	  <img src="url" width="800" height="600">
+// `);
+//   instance.show();
+    const instance = basicLightbox.create(`
+    <div class="modal">
+         <img src="url" width="800" height="600">
+    </div>
+`)
+
+instance.show()
 }
 
 console.log(onClick);

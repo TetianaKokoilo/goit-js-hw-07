@@ -5,38 +5,34 @@ console.log(galleryItems);
 
 const imageGallery = document.querySelector('.gallery');
 
-function createNewImageGallery() {
   const markup = galleryItems
     .map(
       item =>
         `<div class="gallery__item">
-        <a href="${item.original}" class="gallery__link">
-          <img class="gallery__image"
-          scr ="${item.preview}" 
-          data-source = "${item.original}" 
-          alt="${item.description}">
-        </a>
-      </div>`,
-    )
-    .join('');
+            <a class="gallery__link" href="${item.original}">
+                <img class="gallery__image"
+                src ="${item.preview}" 
+                data-source = "${item.original}" 
+                alt="${item.description}"/>
+            </a>
+        </div>`).join('');
 
   imageGallery.insertAdjacentHTML('beforeend', markup);
-}
 
-createNewImageGallery();
+
 console.log(imageGallery);
 
 imageGallery.addEventListener('click', onClick);
 
 function onClick(event) {
+    event.preventDefault()
+
   if (!event.target.classList.contains('gallery__image')) {
     return;
   }
   console.log(event.target);
   const instance = basicLightbox.create(`
-	<h1>Dynamic Content</h1>
-	<p>You can set the content of the lightbox with JS.</p>
-    
+	  <img src="${item.original}" width="800" height="600">
 `);
   instance.show();
 }

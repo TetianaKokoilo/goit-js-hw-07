@@ -28,3 +28,10 @@ function onClick(event) {
     }
     console.log(event.target);
 }
+
+
+new SimpleLightbox('.gallery .gallery__item', {
+    captionsData: 'alt',
+    captionDelay: 250,
+
+});

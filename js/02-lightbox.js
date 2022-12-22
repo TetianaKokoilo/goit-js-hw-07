@@ -18,17 +18,6 @@ newGallery.insertAdjacentHTML('beforeend', markup);
 
 console.log(newGallery);
 
-newGallery.addEventListener('click', onClick);
-
-function onClick(event) {
-    event.preventDefault()
-
-    if (!event.target.classList.contains('gallery__image')) {
-        return;
-    }
-    console.log(event.target);
-}
-
 
 new SimpleLightbox('.gallery .gallery__item', {
     captionsData: 'alt',

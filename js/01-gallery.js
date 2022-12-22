@@ -23,32 +23,62 @@ imageGallery.insertAdjacentHTML('beforeend', markup);
 
 console.log(imageGallery);
 
-imageGallery.addEventListener('click', onClick);
+window.addEventListener('click', onClick);
 
 function onClick(event) {
   event.preventDefault();
-
   if (!event.target.classList.contains('gallery__image')) {
     return;
   }
   console.log(event.target);
 
-  const instance = basicLightbox.create(`
+  const instance = basicLightbox.create(
+    `
     <div class="modal">
-         <img src="${event.target.dataset.source}">
-    </div>
-`);
+        <img src="${event.target.dataset.source}">
+    </div>`,
+    {
+      onShow: instance => {
+        window.addEventListener('keydown', () => {
+          const ESC_KEY_CODE = 'Escape';
+          const isEscKey = event.code === ESC_KEY_CODE;
+          console.log(`esc`, event);
+          if (instance === isEscKey) {
+            instance.close();
+          }
+        });
+      },
+    },
+    {
+      onClose: instance => {
+        window.removeEventListener('keydown', () => {});
+      },
+    },
+  );
 
   instance.show();
 }
 
-imageGallery.removeEventListener('keydown', onEscKeyPress);
+// function onClick(event) {
+//   event.preventDefault();
 
-function onEscKeyPress(event) {
-  const ESC_KEY_CODE = 'Escape';
-  const isEscKey = event.code === ESC_KEY_CODE;
-
-  if (isEscKey) {
-    instance.close();
-  }
-}
+//   if (!event.target.classList.contains('gallery__image')) {
+//     return;
+//   }
+//   console.log(event.target);
+//   const instance = basicLightbox.create(`
+//     <div class="modal">
+//          <img src="${event.target.dataset.source}">
+//     </div>`, {
+//     onShow: (instance) => {
+//       window.addEventListener('keydown', () => {
+//         const ESC_KEY_CODE = 'Escape';
+//         const isEscKey = event.code === ESC_KEY_CODE;
+//         if (instance === isEscKey) {
+//           instance.close();
+//         }
+//         window.removeEventListener('keydown', () => { });
+//       }),
+//   });
+//         instance.show();
+//     }

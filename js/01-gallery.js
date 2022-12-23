@@ -58,4 +58,5 @@ function onEscKeyPress(event) {
   if (event.key === 'Escape') {
     instance.close();
   }
+  return 
 }

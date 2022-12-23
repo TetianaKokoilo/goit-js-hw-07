@@ -23,7 +23,7 @@ imageGallery.insertAdjacentHTML('beforeend', markup);
 
 console.log(imageGallery);
 
-window.addEventListener('click', onClick);
+imageGallery.addEventListener('click', onClick);
 
 function onClick(event) {
   event.preventDefault();

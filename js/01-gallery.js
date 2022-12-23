@@ -38,20 +38,14 @@ function onClick(event) {
         <img src="${event.target.dataset.source}">
     </div>`,
     {
-      onShow: instance => {
-        window.addEventListener('keydown', () => {
-          const ESC_KEY_CODE = 'Escape';
-          const isEscKey = event.code === ESC_KEY_CODE;
-          console.log(`esc`, event);
-          if (instance === isEscKey) {
-            instance.close();
-          }
-        });
+      onShow: () => {
+        window.addEventListener('keydown', onEscKeyPress);
+        // instance.close();
       },
     },
     {
-      onClose: instance => {
-        window.removeEventListener('keydown', () => {});
+      onClose: () => {
+        window.removeEventListener('keydown', onEscKeyPress);
       },
     },
   );
@@ -59,26 +53,9 @@ function onClick(event) {
   instance.show();
 }
 
-// function onClick(event) {
-//   event.preventDefault();
-
-//   if (!event.target.classList.contains('gallery__image')) {
-//     return;
-//   }
-//   console.log(event.target);
-//   const instance = basicLightbox.create(`
-//     <div class="modal">
-//          <img src="${event.target.dataset.source}">
-//     </div>`, {
-//     onShow: (instance) => {
-//       window.addEventListener('keydown', () => {
-//         const ESC_KEY_CODE = 'Escape';
-//         const isEscKey = event.code === ESC_KEY_CODE;
-//         if (instance === isEscKey) {
-//           instance.close();
-//         }
-//         window.removeEventListener('keydown', () => { });
-//       }),
-//   });
-//         instance.show();
-//     }
+function onEscKeyPress(event) {
+  console.log(`esc`, event);
+  if (event.key === 'Escape') {
+    instance.close();
+  }
+}

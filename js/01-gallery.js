@@ -48,15 +48,17 @@ function onClick(event) {
         window.removeEventListener('keydown', onEscKeyPress);
       },
     },
+    
   );
 
   instance.show();
-}
 
-function onEscKeyPress(event) {
+  function onEscKeyPress(event) {
   console.log(`esc`, event);
   if (event.key === 'Escape') {
     instance.close();
   }
-  return 
+  // return 
+}
+
 }
